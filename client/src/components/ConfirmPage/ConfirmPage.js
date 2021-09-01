@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles'
-import { Button, Paper, Typography, TextField } from "@material-ui/core";
+import { Button, Paper, Typography } from "@material-ui/core";
 import { Redirect, useParams } from "react-router-dom";
 import { attemptGetConfirmation } from "../../store/thunks/auth";
 
