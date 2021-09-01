@@ -11,7 +11,7 @@ services:
       context: ./client
       dockerfile: Dockerfile.prod
     ports:
-      - "80:80"
+      - "443:443"
     restart: always
     environment:
       - NODE_ENV=production
@@ -27,7 +27,7 @@ services:
       - NODE_ENV=production
       - MONGO_URI=mongodb://mongo-prod:27017/masterdegree
       - PORT=5000
-      - HOST=localhost:80
+      - HOST=localhost:443
       - USER_EMAIL=masterdegreekpi@gmail.com
       - USER_PASSWORD=masterdegreekpi
       - SESSION_KEY=IVumzLgCXsA8xbWSjYpsMWcO8S7rpxPB
