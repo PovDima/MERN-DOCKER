@@ -1,0 +1,37 @@
+version: "3"
+services:
+  mongo-prod:
+    image: mongo:latest
+    ports:
+      - "20717:20717" 
+    volumes:
+      - /data/db # Create a volume for the DB.
+  client-prod:
+    container_name: client
+    build:
+      context: ./client
+      dockerfile: Dockerfile.prod
+    ports:
+      - "3000:3000"
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_API_URL=http://localhost:5000
+    restart: always
+  server-prod:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.prod
+    depends_on:
+      - mongo-prod
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongo-prod:27017/PROD
+      - PORT=5000
+      - HOST=localhost:3000
+      - USER_EMAIL=masterdegreekpi@gmail.com
+      - USER_PASSWORD=masterdegreekpi
+      - SESSION_KEY=IVumzLgCXsA8xbWSjYpsMWcO8S7rpxPB
+    ports:
+      - "5000:5000"
+    restart: always
